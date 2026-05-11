@@ -1,0 +1,47 @@
+Voici un exercice de niveau moyen qui va te faire pratiquer la création, l'insertion, la sélection avec filtres et la mise à jour de données.
+
+On va simuler une petite partie de ton projet de gestion immobilière (un thème qui semble t'intéresser).
+
+🏗️ L'exercice : "Gestion des Annonces Immobilières"
+1. La structure (Table)
+Crée une table nommée annonces avec les colonnes suivantes :
+
+id : Clé primaire (Auto-incrément).
+
+titre : Texte.
+
+prix : Nombre entier.
+
+ville : Texte.
+
+disponible : Entier (1 pour Oui, 0 pour Non).
+
+2. Les données
+Insère ces 4 annonces dans ta table :
+
+StudioStudioStudio, 150 000 FCFA, Abidjan, Disponible.
+
+Villa Luxe, 800 000 FCFA, Assinie, Disponible.
+
+Appartement, 300 000 FCFA, Abidjan, Non disponible.
+
+Terrain, 5 000 000 FCFA, Yamoussoukro, Disponible.
+
+3. Les requêtes à écrire (Le défi)
+Écris le code Python/SQL pour réaliser ces 4 missions :
+
+Mission A : Afficher uniquement le titre et le prix de toutes les annonces situées à "Abidjan".
+
+Mission B : Afficher toutes les annonces dont le prix est supérieur à 250 000 FCFA.
+
+Mission C : Mettre à jour l'annonce n°3 pour la rendre "Disponible" (1).
+
+Mission D : Supprimer toutes les annonces de la ville de "Assinie".
+
+💡 Un petit rappel pour t'aider
+Rappel sur les tuples en Python :
+N'oublie pas la règle de la virgule que nous avons vue tout à l'heure !
+
+Correct : cursor.execute("SELECT * FROM annonces WHERE ville=?", ('Abidjan',))
+
+Incorrect : cursor.execute("SELECT * FROM annonces WHERE ville=?", ('Abidjan'))

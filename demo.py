@@ -1,10 +1,8 @@
 import sqlite3
 
-# 1. Connexion (crée le fichier s'il n'existe pas)
 db = sqlite3.connect("MA_basse_de_donnée.db")
 cursor = db.cursor()
 
-# 2. Création de la table (Syntaxe corrigée)
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS user(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -15,18 +13,13 @@ CREATE TABLE IF NOT EXISTS user(
 )
 """)
 
-# 3. Insertion des données (Correction des tuples)
-# On utilise une liste de tuples pour plus de clarté
-utilisateurs = [
-    ('ZEBI', 'LOBOGNON', 'Zebi.lobognon@gmail.com'),
-    ('ZEBI', 'MANASSE', 'Zebi.MANASSE@gmail.com'),
-    ('ZEBI', 'WILFEID', 'Zebi.WILFEID@gmail.com')
-]
+# utilisateurs = [
+#     'ZEBI', 'WILFEID', 'Zebi.ddddd@gmail.com'
+# ]
+# cursor.execute("INSERT INTO user(nom,prenom,email) VALUES (:nom,:prenom, :email)",utilisateurs)
 
-# On insère tout d'un coup avec executemany
-cursor.executemany("INSERT INTO user (nom, prenom, email) VALUES (?, ?, ?)", utilisateurs)
 
-# 4. Validation et fermeture
+cursor.execute("DELETE FROM user WHERE email=?",('wilsone@hate.th',))
 db.commit()
 db.close()
 
