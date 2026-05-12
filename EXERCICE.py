@@ -31,12 +31,12 @@ Données=[
 
 # Mission A : Afficher uniquement le titre et le prix de toutes les annonces situées à "Abidjan".
 
-cusor.execute("SELECT * FROM annonces WHERE ville='Abidjan'")
-
+cusor.execute("SELECT titre, prix FROM annonces WHERE ville='Abidjan'")
 for I in cusor.fetchall():
-    print(I)
+    if I[1] > 250000:
+        print(I)
+
 
 bd.commit()
 bd.close()
 
-print("Bravo ! La base de données a été créée et les utilisateurs ajoutés.")
