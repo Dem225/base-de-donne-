@@ -1,0 +1,44 @@
+🏗️ Exercise : "Statistiques et Recherche Avancée"
+Ton agence immobilière commence à avoir beaucoup de succès. Tu dois maintenant créer un script qui permet au patron (ZEBI) de voir des statistiques claires sur les annonces.
+
+1. Préparation (La base)
+Garde la même table Statistiques que précédemment. Si tu relances ton script, assure-toi de bien vider la table ou de recommencer avec une base propre pour avoir ces 5 données précises :
+
+
+
+Titre,Prix,Ville,Available
+Penthouse,1 200 000,Abidjan,1
+Studio Zone 4,200 000,Abidjan,1
+Résidence Bassam,600000,Grand-Bassam,1
+Bureau Plateau,450000,Abidjan,0
+Loft Almadies,950000,Dakar,1
+
+
+2. Les Missions (Le défi SQL)
+Écris les requêtes pour :
+
+Mission A (Le Tri) : Afficher toutes les Statistiques disponibles, classées du plus cher au moins cher.
+
+Indice : Utilise ORDER BY ... DESC.
+
+Mission B (Le Calcul) : Afficher le prix moyen des Statistiques situées à "Abidjan".
+
+Indice : Utilise la fonction AVG(prix).
+
+Mission C (Le Comptage) : Compter combien Statistiques au total sont enregistrées pour la ville de "Abidjan".
+
+Indice : Utilise COUNT(*).
+
+Mission D (Recherche Textuelle) : Afficher toutes les Statistiques dont le titre contient le mot "Luxe" ou "Loft".
+
+Index : Use LIKE '%MOT%'.
+
+
+Aide-mémoire pour ton code Python
+Pour récupérer une seule valeur (comme une compte ou une moyenne), tu peux utiliser fetchone() au lieu de fetchall() :
+
+Python
+cursor.execute("SELECT COUNT(*) FROM Statistiques")
+resultat = cursor.fetchone() 
+print(f"Total Statistiques : {resultat[0]}")
+À toi de jouer ! Propose-moi ton code quand tu es prêt. N'oublie pas de bien structurer ton CSS et ton HTML à part si tu décides plus tard d'en faire une interface web, mais pour l'instant, concentrons-nous sur la logique SQL.

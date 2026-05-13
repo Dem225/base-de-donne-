@@ -45,3 +45,63 @@ N'oublie pas la règle de la virgule que nous avons vue tout à l'heure !
 Correct : cursor.execute("SELECT * FROM annonces WHERE ville=?", ('Abidjan',))
 
 Incorrect : cursor.execute("SELECT * FROM annonces WHERE ville=?", ('Abidjan'))
+
+
+
+
+
+
+Correction of ex
+
+import sqlite3
+
+# Connexion
+bd = sqlite3.connect("annonces.db")
+cursor = bd.cursor()
+
+# 1. Création de la table (Correction : TEXT au lieu de TEXTE)
+cursor.execute("""
+    CREATE TABLE IF NOT EXISTS annonces (
+              id INTEGER PRIMARY KEY AUTOINCREMENT,
+              titre TEXT NOT NULL,
+              prix INTEGER NOT NULL,
+              ville TEXT NOT NULL,
+              disponible INTEGER NOT NULL
+              )
+""")
+
+# 2. Données (On utilise des entiers pour 'disponible')
+donnees = [
+    ('Studio', 150000, 'Abidjan', 1),
+    ('Villa Luxe', 800000, 'Assinie', 1),
+    ('Appartement', 300000, 'Abidjan', 0), # L'énoncé disait "Non disponible" pour celui-là
+    ('Terrain', 5000000, 'Yamoussoukro', 1)
+]
+
+# Insertion (à ne faire qu'une fois pour éviter les doublons)
+cursor.executemany("INSERT INTO annonces (titre, prix, ville, disponible) VALUES (?, ?, ?, ?)", donnees)
+
+# --- LES MISSIONS ---
+
+# Mission A : Titre et prix à Abidjan
+print("--- Mission A : Abidjan ---")
+cursor.execute("SELECT titre, prix FROM annonces WHERE ville = ?", ('Abidjan',))
+for annonce in cursor.fetchall():
+    print(annonce)
+
+# Mission B : Prix > 250 000
+print("\n--- Mission B : Prix > 250k ---")
+cursor.execute("SELECT * FROM annonces WHERE prix > ?", (250000,))
+for annonce in cursor.fetchall():
+    print(annonce)
+
+# Mission C : Mettre à jour l'annonce n°3 pour la rendre "Disponible" (1)
+cursor.execute("UPDATE annonces SET disponible = ? WHERE id = ?", (1, 3))
+
+# Mission D : Supprimer les annonces de Assinie
+cursor.execute("DELETE FROM annonces WHERE ville = ?", ('Assinie',))
+
+# Sauvegarde et fermeture
+bd.commit()
+bd.close()
+print("\nBases de données mise à jour avec succès !")

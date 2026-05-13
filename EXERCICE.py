@@ -15,10 +15,10 @@ cusor.execute("""
 """)
 
 Données=[
-    ('Study','150,000 FCFA','Abidjan','1'),
-    ('Villa Luxe',' 800 000 FCFA','Assinie','1'),
-    ('Appartement','300 000 FCFA','Abidjan','1'),
-    ('Terrain','5 000 000 FCFA','Yamoussoukro','1')
+    ('Study',150000,'Abidjan','1'),
+    ('Villa Luxe',800000,'Assinie','1'),
+    ('Appartement',300000,'Abidjan','1'),
+    ('Terrain',5000000,'Yamoussoukro','1')
 ]
 
 
@@ -31,10 +31,10 @@ Données=[
 
 # Mission A : Afficher uniquement le titre et le prix de toutes les annonces situées à "Abidjan".
 
-cusor.execute("SELECT titre, prix FROM annonces WHERE ville='Abidjan'")
+cusor.execute("DELETE FROM annonces WHERE ville =?" , ('Yamoussoukro' ,))
 for I in cusor.fetchall():
-    if I[1] > 250000:
-        print(I)
+   
+     print(I)
 
 
 bd.commit()
